@@ -16,7 +16,7 @@ export const querySession = query(async (path: string) => {
   const { data } = await getSession();
   if (path === "/login" && data.id) return redirect("/");
   if (data.id) return data;
-  if (isProtectedRoute(path)) throw redirect("/login");
+  if (isProtectedRoute(path)) throw redirect(`/login?redirect=${path}`);
   return null;
 }, "session");
 
