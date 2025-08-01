@@ -7,7 +7,7 @@ const config: Configuration = {
     id: process.env.DISCORD_ID!,
     secret: process.env.DISCORD_SECRET!
   },
-  handler: async ({ email }, redirect) => oauthSignIn(email, redirect)
+  handler: async ({ email }, redirectTo) => oauthSignIn(email, redirectTo)
 };
 
 export const GET = OAuth(config);

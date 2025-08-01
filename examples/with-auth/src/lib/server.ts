@@ -12,17 +12,17 @@ export const getSession = () =>
     password: process.env.SESSION_SECRET!
   });
 
-export const createSession = async (user: Session, dest?: string) => {
-  const validDest = dest?.[0] === "/" && dest[1] !== "/";
+export const createSession = async (user: Session, redirectTo?: string) => {
+  const validDest = redirectTo?.[0] === "/" && redirectTo[1] !== "/";
   const session = await getSession();
   await session.update(user);
-  return redirect(validDest ? dest : "/");
+  return redirect(validDest ? redirectTo : "/");
 };
 
-export const oauthSignIn = async (email: string, dest?: string) => {
+export const oauthSignIn = async (email: string, redirectTo?: string) => {
   let user = await findUser({ email });
   if (!user) user = await createUser({ email });
-  return createSession(user, dest);
+  return createSession(user, redirectTo);
 };
 
 export const passwordSignIn = async (email: string, password: string) => {
