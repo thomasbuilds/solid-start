@@ -38,9 +38,6 @@ npm create solid@latest
 # With pnpm
 pnpm create solid@latest
 
-# With yarn
-yarn create solid
-
 # With bun
 bunx create-solid
 ```
@@ -50,7 +47,7 @@ bunx create-solid
 
 ```bash
 cd <project-name>
-npm install # or pnpm install, yarn install, bun install
+npm install # or pnpm install, bun install
 ```
 
 3. Start the development server:
@@ -76,7 +73,7 @@ Learn more about [routing](https://docs.solidjs.com/solid-start/building-your-ap
 Generate optimized production bundles:
 
 ```bash
-npm run build # or pnpm/yarn/bun
+npm run build # or pnpm/bun
 ```
 
 Output is saved to the `dist/` directory.
