@@ -1,76 +1,141 @@
-<p>
-  <img width="100%" src="https://assets.solidjs.com/banner?project=Start&type=core" alt="Solid Docs">
-</p>
+[![SolidStart Banner](https://assets.solidjs.com/banner?project=Start&type=core)](https://github.com/solidjs)
 
-# SolidStart
+[![NPM Version](https://img.shields.io/npm/v/@solidjs/start.svg?style=for-the-badge&color=blue)](https://www.npmjs.com/package/@solidjs/start)
+[![NPM Downloads](https://img.shields.io/npm/dm/@solidjs/start.svg?style=for-the-badge&color=blue)](https://www.npmjs.com/package/@solidjs/start)
+[![GitHub Stars](https://img.shields.io/github/stars/solidjs/solid-start?style=for-the-badge&color=blue)](https://github.com/solidjs/solid-start)
+[![Discord](https://img.shields.io/discord/722131463138705510?style=for-the-badge&color=blue)](https://discord.com/invite/solidjs)
+[![Subreddit](https://img.shields.io/reddit/subreddit-subscribers/solidjs?style=for-the-badge&color=blue)](https://www.reddit.com/r/solidjs/)
 
-This is the home of the SolidStart, the Solid app framework.
+**SolidStart** brings fine-grained reactivity fullstack! With features like unified server-side/client-side rendering and isomorphic code execution, it enables developers to build highly-performant, scalable web applications with full flexibility and simplicity.
+
+Explore the [documentation](https://docs.solidjs.com/solid-start) for detailed guides and examples.
 
 ## Features
 
-- File-system based routing
-- Supports all rendering modes:
-  - Server-side rendering (SSR)
-  - Streaming SSR
-  - Client-side rendering (CSR)
-  - Static site generation (SSG)
-- Streaming
-- Build optimizations with code splitting, tree shaking and dead code elimination
-- API Routes
-- Built on Web standards like Fetch, Streams, and WebCrypto
-- Adapters for deployment to all popular platforms
-- CSS Modules, SASS/SCSS Support
-- TypeScript-first
+- File-system Based Routing: Intuitive routing based on your project’s file structure.
+- All Rendering Modes:
+  - Server-Side Rendering (SSR) with sync, async, and streaming
+  - Client-Side Rendering (CSR)
+  - Static Site Generation (SSG)
+- Streaming: Efficient data rendering for faster page loads.
+- Build Optimizations: Code splitting, tree shaking, and dead code elimination.
+- API Routes: Create server-side endpoints with ease.
+- Web Standards: Built on Fetch, Streams, and WebCrypto.
+- Deployment Adapters: Deploy to platforms like Vercel, Netlify, or Cloudflare.
+- CSS Support: CSS Modules and SASS/SCSS integration.
+- TypeScript-First: Full TypeScript support for robust development.
 
-### Getting started
+## Getting Started
 
-Create a SolidStart application and run a development server using your preferred package manager:
+### Installation
+
+Create a new SolidStart project using the `create-solid` CLI with your preferred package manager:
 
 ```bash
-mkdir my-app
-cd my-app
+# With npm
+npm create solid@latest
 
-# with npm
-npm init solid@latest
-npm install
-npm run dev
-
-# or with pnpm
+# With pnpm
 pnpm create solid@latest
-pnpm install
-pnpm dev
 
-# or with Bun
-bun create solid@latest
-bun install
-bun dev
+# With yarn
+yarn create solid
+
+# With bun
+bunx create-solid
 ```
 
-### Development
+1. Follow the CLI prompts to configure your project (e.g., project name, type, templates). Select SolidStart as the project type.
+2. Navigate to your project directory and install dependencies:
 
-You should use a Node.js version manager [compatible with `.node-version`](https://stackoverflow.com/a/62978089/565877) ([asdf-vm](https://asdf-vm.com/) is a great option macOS/Linux users)
+```bash
+cd <project-name>
+npm install # or pnpm install, yarn install, bun install
+```
 
-The monorepo uses `pnpm` as the package manager. To install `pnpm`, run the following command in your terminal.
+3. Start the development server:
+
+```bash
+npm run dev # or pnpm dev, yarn dev, bun dev
+```
+
+### Project Structure
+
+- `public/`: Static assets like images and fonts.
+- `src/`: Core application code (aliased to `~/`).
+  - `routes/`: File-based routing for pages and APIs.
+  - `app.tsx` (or `.jsx`): Root component of your app.
+  - `entry-client.tsx`: Handles client-side hydration.
+  - `entry-server.tsx`: Manages server-side request handling.
+- Config Files: `app.config.ts`, `package.json`, and more.
+
+Learn more about [routing](https://docs.solidjs.com/solid-start/building-your-application/routing) in the docs.
+
+## Building for Production
+
+Generate optimized production bundles:
+
+```bash
+npm run build # or pnpm/yarn/bun
+```
+
+Output is saved to the `dist/` directory.
+
+## Deployment
+
+Configure adapters in `app.config.ts` to deploy to platforms like Vercel, Netlify, Cloudflare and many others!
+
+```ts
+// app.config.ts example
+import { defineConfig } from "@solidjs/start/config";
+
+export default defineConfig({
+  server: { preset: "vercel" },
+});
+```
+
+Learn more on all [`defineConfig`](https://docs.solidjs.com/solid-start/reference/config/define-config) options.
+
+## Contributing
+
+Join the SolidJS community to contribute to SolidStart:
+
+- [GitHub Issues](https://github.com/solidjs/solid-start/issues): Report bugs or suggest features.
+- [Solid Docs GitHub](https://github.com/solidjs/solid-docs/issues): Report documentation issues.
+- [SolidJS Discord](https://discord.com/invite/solidjs): Discuss ideas and get support.
+
+<details>
+<summary><h3>Development Setup</h3></summary>
+
+Use a Node.js version manager compatible with `.node-version`. We recommend [asdf-vm](https://asdf-vm.com/) for macOS/Linux users.
+
+### Monorepo & Package Manager
+
+SolidStart uses `pnpm` as the package manager. Install it globally:
 
 ```bash
 npm install -g pnpm
 ```
 
-Run `pnpm install` to install all the dependencies for the packages and examples in your monorepo.
+Install dependencies for the monorepo:
 
-Run `pnpm build` to build SolidStart project
+```bash
+pnpm install
+```
 
-<details>
-<summary><h4>Monorepo & <code>project.json</code> <code>"workspace"</code> support</h4></summary>
+Build the project:
 
-If you are using SolidStart within a monorepo that takes advantage of the `package.json` `"workspaces"` property (e.g. [Yarn workspaces](https://classic.yarnpkg.com/en/docs/workspaces/)) with hoisted dependencies (the default for Yarn), you must include `#solidjs/start` within the optional `"nohoist"` (for Yarn v2 or higher, see further down for instructions) workspaces property.
+```bash
+pnpm build
+```
 
-- _In the following, "workspace root" refers to the root of your repository while "project root" refers to the root of a child package within your repository._
+### Monorepo & `package.json` Workspaces
 
-For example, if specifying `"nohoist"` options from the workspace root (i.e. for all packages):
+If using a monorepo with `package.json` `"workspaces"` (e.g., [Yarn Workspaces](https://classic.yarnpkg.com/en/docs/workspaces/)), ensure `@solidjs/start` is not hoisted. Add it to the `"nohoist"` field in the workspace root or project root:
+
+**Workspace Root Example**:
 
 ```jsonc
-// in workspace root
 {
   "workspaces": {
     "packages": [
@@ -81,10 +146,9 @@ For example, if specifying `"nohoist"` options from the workspace root (i.e. for
 }
 ```
 
-If specifying `"nohoist"` options for a specific package using `@solidjs/start`:
+**Project Root Example**:
 
 ```jsonc
-// in project root of a workspace child
 {
   "workspaces": {
     "nohoist": ["@solidjs/start"]
@@ -92,21 +156,16 @@ If specifying `"nohoist"` options for a specific package using `@solidjs/start`:
 }
 ```
 
-Regardless of where you specify the `nohoist` option, you also need to include `@solidjs/start` as a `devDependency` in the child `package.json`.
-
-The reason why this is necessary is because `@solidjs/start` creates an `index.html` file within your project which expects to load a script located in `/node_modules/@solidjs/start/runtime/entry.jsx` (where `/` is the path of your project root). By default, if you hoist the `@solidjs/start` dependency into the workspace root then that script will not be available within the package's `node_modules` folder.
-
-**Yarn v2 or higher**
-
-The `nohoist` option is no longer available in Yarn v2+. In this case, we can use the `installConfig` property in the `package.json` (either workspace package or a specific project package) to make sure our deps are not hoisted.
+For **Yarn v2+**, use `installConfig` to prevent hoisting:
 
 ```jsonc
-// in project root of a workspace child
 {
   "installConfig": {
     "hoistingLimits": "dependencies"
   }
 }
 ```
+
+Note: Add `@solidjs/start` as a `devDependency` in the child `package.json` to ensure the `/node_modules/@solidjs/start/runtime/entry.jsx` script is available.
 
 </details>
