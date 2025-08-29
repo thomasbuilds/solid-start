@@ -1,9 +1,9 @@
-import { useSession } from "~/lib/Context";
 import { A } from "@solidjs/router";
+import { useAuth } from "~/components/Context";
 import Counter from "~/components/Counter";
 
 export default function Home() {
-  const { session } = useSession();
+  const { session } = useAuth();
 
   return (
     <main class="flex items-center justify-center min-h-screen bg-gray-50 text-gray-700 p-4">

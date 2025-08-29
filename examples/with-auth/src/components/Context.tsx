@@ -1,7 +1,7 @@
+import { createAsync, useAction, useLocation, type AccessorWithLatest } from "@solidjs/router";
 import { createContext, useContext, type ParentProps } from "solid-js";
-import { type AccessorWithLatest, useLocation, createAsync, useAction } from "@solidjs/router";
-import { querySession, logout } from ".";
-import type { Session } from "./server";
+import { logout, querySession } from "../auth";
+import type { Session } from "../auth/server";
 
 const Context = createContext<{
   session: AccessorWithLatest<Session | null | undefined>;
@@ -9,7 +9,7 @@ const Context = createContext<{
   signOut: () => Promise<never>;
 }>();
 
-export default function Session(props: ParentProps) {
+export default function Auth(props: ParentProps) {
   const location = useLocation();
   const session = createAsync(() => querySession(location.pathname), {
     deferStream: true
@@ -22,8 +22,8 @@ export default function Session(props: ParentProps) {
   );
 }
 
-export function useSession() {
+export function useAuth() {
   const context = useContext(Context);
-  if (!context) throw new Error("useSession must be used within Session context");
+  if (!context) throw new Error("useAuth must be used within Auth context");
   return context;
 }

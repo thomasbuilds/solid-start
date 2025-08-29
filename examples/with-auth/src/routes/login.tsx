@@ -1,7 +1,7 @@
 import { useSubmission } from "@solidjs/router";
 import { Show } from "solid-js";
 import useOAuthLogin from "start-oauth/client";
-import { passwdSignIn } from "~/lib";
+import { login } from "~/auth";
 
 export default function Login() {
   return (
@@ -16,10 +16,10 @@ export default function Login() {
 }
 
 function Password() {
-  const status = useSubmission(passwdSignIn);
+  const status = useSubmission(login);
 
   return (
-    <form action={passwdSignIn} method="post" class="space-y-4">
+    <form action={login} method="post" class="space-y-4">
       <label for="email" class="block text-left">
         <span class="text-sm font-medium">Email</span>
         <input

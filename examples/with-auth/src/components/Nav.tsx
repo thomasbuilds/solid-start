@@ -1,9 +1,9 @@
 import { useMatch } from "@solidjs/router";
 import { Show } from "solid-js";
-import { useSession } from "~/lib/Context";
+import { useAuth } from "~/components/Context";
 
 export default function Nav() {
-  const { signedIn, signOut } = useSession();
+  const { signedIn, signOut } = useAuth();
   const isHome = useMatch(() => "/");
   const isAbout = useMatch(() => "/about");
 
