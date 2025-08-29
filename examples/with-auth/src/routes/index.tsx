@@ -1,3 +1,4 @@
+import { Title } from "@solidjs/meta";
 import { A } from "@solidjs/router";
 import { useAuth } from "~/components/Context";
 import Counter from "~/components/Counter";
@@ -7,6 +8,7 @@ export default function Home() {
 
   return (
     <main class="flex items-center justify-center min-h-screen bg-gray-50 text-gray-700 p-4">
+      <Title>Home</Title>
       <div class="w-full max-w-2xl text-center space-y-8">
         <h1 class="text-6xl text-sky-700 font-thin uppercase">Hello World!</h1>
         <h3 class="text-xl font-medium">Your email is {session()?.email}</h3>

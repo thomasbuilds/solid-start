@@ -1,9 +1,11 @@
+import { Title } from "@solidjs/meta";
 import { A } from "@solidjs/router";
 import Counter from "~/components/Counter";
 
 export default function About() {
   return (
     <main class="flex items-center justify-center min-h-screen bg-gray-50 p-4">
+      <Title>About Page</Title>
       <div class="w-full max-w-2xl text-center space-y-8">
         <h1 class="text-6xl text-sky-700 font-thin uppercase">About Page</h1>
         <Counter />

@@ -1,3 +1,4 @@
+import { Title } from "@solidjs/meta";
 import { useSubmission } from "@solidjs/router";
 import { Show } from "solid-js";
 import useOAuthLogin from "start-oauth/client";
@@ -6,6 +7,7 @@ import { login } from "~/auth";
 export default function Login() {
   return (
     <main class="flex items-center justify-center min-h-screen bg-gray-50 text-gray-700 p-4">
+      <Title>Sign In</Title>
       <div class="w-full max-w-md space-y-8 text-center">
         <h1 class="text-6xl text-sky-700 font-thin uppercase">Sign in</h1>
         <Password />
